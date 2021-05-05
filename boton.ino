@@ -1,4 +1,4 @@
-void setup()
+void setup()//tu codigo es el doble de incompleto
 {
  pinMode (2,OUTPUT);
  pinMode (3,OUTPUT);
