@@ -1,0 +1,48 @@
+// C++ code
+//
+int distancia = 0;
+int promedio=0;
+
+int i = 0;
+
+long readUltrasonicDistance(int triggerPin, int echoPin)
+{
+  pinMode(triggerPin, OUTPUT);  // Clear the trigger
+  digitalWrite(triggerPin, LOW);
+  delayMicroseconds(2);
+  // Sets the trigger pin to HIGH state for 10 microseconds
+  digitalWrite(triggerPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(triggerPin, LOW);
+  pinMode(echoPin, INPUT);
+  // Reads the echo pin, and returns the sound wave travel time in microseconds
+  return pulseIn(echoPin, HIGH);
+}
+
+int counter;
+
+void setup()
+{
+  Serial.begin(9600);
+
+}
+
+void loop()
+{
+  promedio =0;
+  for (counter = 0; counter < 5; counter+=1) {
+    
+    distancia = 0.01723 * readUltrasonicDistance(3, 3);
+    
+    promedio= promedio + distancia;
+    Serial.print("distancia= ");
+    Serial.println(distancia);
+    delay(400); 
+  }
+  
+   
+   promedio=promedio/5;
+   Serial.print("El promedio es ");
+   Serial.print(promedio);
+   Serial.println(" cm.");
+}
